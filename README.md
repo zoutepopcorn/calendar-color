@@ -1,3 +1,24 @@
+# Simple test to add color to event under android
+
+```javascript
+
+const startEvent = new Date(2022,4,1,4,0,0,0); // beware: month 0 = january, 11 = december
+const endEvent = new Date(2022,4,1,23,0,0,0);
+const calOptions = {
+	calendarId: 5,
+	colorCode: 8
+}
+
+window.plugins.calendar.createEventWithOptions("I have a color event","","",startEvent,endEvent,calOptions,
+	(suc) => {
+	console.log("suc ", suc);
+	},
+	(err) => {
+	console.log("err ", err);
+	});
+```
+
+
 # PhoneGap Calendar plugin
 
 [![NPM version][npm-image]][npm-url]
