@@ -20,7 +20,7 @@ public class LegacyCalendarAccessor extends AbstractCalendarAccessor {
     keys.put(KeyIndex.CALENDARS_ID, "_id");
     keys.put(KeyIndex.IS_PRIMARY, "isPrimary");
     keys.put(KeyIndex.CALENDARS_NAME, "name");
-	  keys.put(KeyIndex.CALENDARS_DISPLAY_NAME, "displayname");
+	keys.put(KeyIndex.CALENDARS_DISPLAY_NAME, "displayname");
     keys.put(KeyIndex.CALENDARS_VISIBLE, "selected");
     keys.put(KeyIndex.EVENTS_ID, "_id");
     keys.put(KeyIndex.EVENTS_CALENDAR_ID, "calendar_id");
@@ -97,16 +97,17 @@ public class LegacyCalendarAccessor extends AbstractCalendarAccessor {
     return super.deleteEventById(eventsUri, id, fromDate);
   }
 
+// !!!!!!!!
   @Override
   public String createEvent(Uri eventsUri, String title, long startTime, long endTime,
                             String description, String location, Long firstReminderMinutes, Long secondReminderMinutes,
                             String recurrence, int recurrenceInterval, String recurrenceWeekstart,
                             String recurrenceByDay, String recurrenceByMonthDay, Long recurrenceEndTime, Long recurrenceCount,
-                            String allday, Integer calendarId, String url) {
+                            String allday, Integer calendarId, String url, Integer colorCode) {
     eventsUri = eventsUri == null ? Uri.parse(CONTENT_PROVIDER_PRE_FROYO + CONTENT_PROVIDER_PATH_EVENTS) : eventsUri;
     return super.createEvent(eventsUri, title, startTime, endTime, description, location,
             firstReminderMinutes, secondReminderMinutes, recurrence, recurrenceInterval, recurrenceWeekstart,
-            recurrenceByDay, recurrenceByMonthDay, recurrenceEndTime, recurrenceCount, allday, calendarId, url);
+            recurrenceByDay, recurrenceByMonthDay, recurrenceEndTime, recurrenceCount, allday, calendarId, url, colorCode);
   }
 
 }

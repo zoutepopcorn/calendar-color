@@ -402,6 +402,8 @@ public class Calendar extends CordovaPlugin {
               description += " " + argOptionsObject.optString("url");
             }
           }
+            //           calIntent.putExtra(Events.EVENT_COLOR, "#ffff00");
+
           calIntent.putExtra("description", description);
           calIntent.putExtra("calendar_id", argOptionsObject.optInt("calendarId", 1));
 
@@ -559,6 +561,8 @@ public class Calendar extends CordovaPlugin {
         @Override
         public void run() {
           try {
+//           getPossibleNullString("title", argObject)
+// !!!!!!!!!!
             final String createdEventID = getCalendarAccessor().createEvent(
                     null,
                     getPossibleNullString("title", argObject),
@@ -577,7 +581,8 @@ public class Calendar extends CordovaPlugin {
                     argOptionsObject.optLong("recurrenceCount", -1),
                     getPossibleNullString("allday", argOptionsObject),
                     argOptionsObject.optInt("calendarId", 1),
-                    getPossibleNullString("url", argOptionsObject));
+                    getPossibleNullString("url", argOptionsObject),
+                    argOptionsObject.optInt("colorCode", 1));
             if (createdEventID != null) {
               callback.success(createdEventID);
             } else {
@@ -658,6 +663,7 @@ public class Calendar extends CordovaPlugin {
           if (cursor != null) {
             while (cursor.moveToNext()) {
               try {
+                //cursor.getString(cursor.getColumnIndex("title"))
                 result.put(
                         i++,
                         new JSONObject()
@@ -667,7 +673,7 @@ public class Calendar extends CordovaPlugin {
                                 .put("rrule", cursor.getString(cursor.getColumnIndex("rrule")))
                                 .put("rdate", cursor.getString(cursor.getColumnIndex("rdate")))
                                 .put("exdate", cursor.getString(cursor.getColumnIndex("exdate")))
-                                .put("title", cursor.getString(cursor.getColumnIndex("title")))
+                                .put("title", "dit is mijn title")
                                 .put("dtstart", cursor.getLong(cursor.getColumnIndex("begin")))
                                 .put("dtend", cursor.getLong(cursor.getColumnIndex("end")))
                                 .put("eventLocation", cursor.getString(cursor.getColumnIndex("eventLocation")) != null ? cursor.getString(cursor.getColumnIndex("eventLocation")) : "")

@@ -597,7 +597,7 @@ public abstract class AbstractCalendarAccessor {
                               String recurrence, int recurrenceInterval, String recurrenceWeekstart,
                               String recurrenceByDay, String recurrenceByMonthDay, Long recurrenceEndTime, Long recurrenceCount,
                               String allday,
-                              Integer calendarId, String url) {
+                              Integer calendarId, String url, Integer colorCode) {
         ContentResolver cr = this.cordova.getActivity().getContentResolver();
         ContentValues values = new ContentValues();
         final boolean allDayEvent = "true".equals(allday) && isAllDayEvent(new Date(startTime), new Date(endTime));
@@ -625,6 +625,8 @@ public abstract class AbstractCalendarAccessor {
         values.put(Events.HAS_ALARM, firstReminderMinutes > -1 || secondReminderMinutes > -1 ? 1 : 0);
         values.put(Events.CALENDAR_ID, calendarId);
         values.put(Events.EVENT_LOCATION, location);
+        // !!!!! ???????
+        values.put(Events.EVENT_COLOR_KEY, colorCode);
 
         if (recurrence != null) {
             String rrule = "FREQ=" + recurrence.toUpperCase() +
